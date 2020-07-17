@@ -15,7 +15,7 @@ Install it first, follow it's how-to, anything else do after that.
 Only this file /etc/X11/xorg.conf.d/20-displaylink.conf 
 It's pretty much based on https://wiki.archlinux.org/index.php/DisplayLink#Workaround_2:_Temporarily_disable_PageFlip_for_modesetting
 
-``
+```
 Section "Device"
 	Identifier "Intel"
 	Driver "intel"
@@ -27,21 +27,30 @@ Section "Device"
   Driver     "modesetting"
   Option     "PageFlip" "false"
 EndSection
-``
+```
 
 ## PulseAudio config
 Commented out soundcard suspending, it caused glitches and disconections of dock itself. File /etc/pulse/default.pa
 Source https://wiki.archlinux.org/index.php/DisplayLink#Displays_disconnect_at_random_intervals_when_using_the_Dell_D6000_docking_station
 
-``
+```
 ### Automatically suspend sinks/sources that become idle for too long
 #load-module module-suspend-on-idle
-``
+```
 
 ## Disable GDM3 Wayland
 It's in file /etc/gdm3/daemon.conf
 Idea is taken from here: https://www.mkleen.de/entry/displaylink-on-linux
-``
+```
 # Uncomment the line below to force the login screen to use Xorg
 WaylandEnable=false
-``
+```
+
+## What's tested and how it ended
+ * HDMI Full HD output - works
+ * DisplayPorts - not tested
+ * Gigabit Ethernet - I have only 100 Mbit network, works
+ * USBs - all works
+ * Audio - works as output and input
+
+I don't have multiple monitors so I can confirm only 1 external monitor setup. Load is in this case about 0.4 higher than normally when whole screen is refreshed.
